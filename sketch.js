@@ -33,14 +33,14 @@ function setup() {
 
 	holder1 = new Holder(320,550,30,200);
 	holder2 = new Holder(550,550,30,200);
-	holder3 = new Holder(450,500,200,30);
+	holder3 = new Holder(450,600,200,30);
 	
 
 	//Create a Ground
 	ground = Bodies.rectangle(width/2, 650, width, 10 , {isStatic:true} );
  	World.add(world, ground);
 
-	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:0, isStatic:true}); 
+	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:0.5, isStatic:true}); 
 	World.add(world, packageBody);
 
 	Engine.run(engine);
@@ -68,8 +68,18 @@ function keyPressed() {
  if ((keyCode === DOWN_ARROW)) {
 	
 	Matter.Body.setStatic(packageBody, false);
-	
-	
-  }
+	}
+
+if ((keyCode === LEFT_ARROW)){
+	helicopterSprite.x = helicopterSprite.x - 5;
+	Matter.Body.translate(packageBody, {x:-5, y:0})
+}
+
+if ((keyCode === RIGHT_ARROW)){
+	helicopterSprite.x = helicopterSprite.x + 5;
+	Matter.Body.translate(packageBody, {x:+5, y:0})
+
+}
+
 }
 
